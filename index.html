@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Hydrated - Water Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-translate="app_title">Stay Hydrated</h1>
+            <div class="header-controls">
+                <button id="settings-btn" class="icon-btn" aria-label="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="water-display">
+                <div class="water-amount">
+                    <span id="current-amount">0</span>
+                    <span class="unit" data-translate="ml">ml</span>
+                </div>
+                <div class="goal-display">
+                    <span data-translate="goal">Goal:</span> 
+                    <span id="daily-goal">2000</span> 
+                    <span class="unit" data-translate="ml">ml</span>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <div id="progress-percentage" class="progress-percentage">0%</div>
+            </div>
+
+            <div class="quick-add-buttons">
+                <button class="quick-btn" data-amount="250">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>250ml</span>
+                </button>
+                <button class="quick-btn" data-amount="500">
+                    <i class="fas fa-wine-glass"></i>
+                    <span>500ml</span>
+                </button>
+                <button class="quick-btn" data-amount="750">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span>750ml</span>
+                </button>
+                <button class="quick-btn" data-amount="1000">
+                    <i class="fas fa-cocktail"></i>
+                    <span>1L</span>
+                </button>
+            </div>
+
+            <div class="custom-add">
+                <input type="number" id="custom-amount" placeholder="Custom amount" min="1" max="5000">
+                <button id="add-custom" data-translate="add_water">Add Water</button>
+            </div>
+
+            <div class="actions">
+                <button id="clear-log" class="secondary-btn" data-translate="clear_log">Clear Today's Log</button>
+                <button id="edit-quick-items" class="secondary-btn" data-translate="edit_quick_items">Edit Quick Items</button>
+            </div>
+        </main>
+
+        <div class="water-log">
+            <h3 data-translate="todays_log">Today's Log</h3>
+            <div id="log-entries"></div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-translate="settings">Settings</h2>
+                <button class="close-btn" id="close-settings">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="language-select" data-translate="language">Language:</label>
+                    <select id="language-select">
+                        <option value="en" data-translate="english">English</option>
+                        <option value="es" data-translate="spanish">Español</option>
+                        <option value="ca" data-translate="catalan">Català</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="units-select" data-translate="units">Units:</label>
+                    <select id="units-select">
+                        <option value="ml" data-translate="ml">Milliliters (ml)</option>
+                        <option value="oz" data-translate="ounces">Ounces (oz)</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="theme-select" data-translate="theme">Theme:</label>
+                    <select id="theme-select">
+                        <option value="light" data-translate="light_theme">Light</option>
+                        <option value="dark" data-translate="dark_theme">Dark</option>
+                        <option value="ocean" data-translate="ocean_theme">Ocean</option>
+                        <option value="forest" data-translate="forest_theme">Forest</option>
+                        <option value="sunset" data-translate="sunset_theme">Sunset</option>
+                        <option value="purple" data-translate="purple_theme">Purple</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="daily-goal-input" data-translate="daily_goal_label">Daily Goal:</label>
+                    <input type="number" id="daily-goal-input" min="500" max="10000" step="250">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Items Editor Modal -->
+    <div id="quick-items-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-translate="edit_quick_items">Edit Quick Items</h2>
+                <button class="close-btn" id="close-quick-items">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="quick-items-editor"></div>
+                <div class="quick-items-actions">
+                    <button id="add-quick-item" class="secondary-btn" data-translate="add_item">Add Item</button>
+                    <button id="reset-quick-items" class="secondary-btn" data-translate="reset_to_default">Reset to Default</button>
+                    <button id="save-quick-items" class="primary-btn" data-translate="save_changes">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievement Notification -->
+    <div id="achievement" class="achievement hidden">
+        <div class="achievement-content">
+            <i class="fas fa-trophy"></i>
+            <span id="achievement-text"></span>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification hidden">
+        <span id="notification-text"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
