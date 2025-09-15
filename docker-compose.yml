@@ -2,9 +2,12 @@ version: '3.8'
 
 services:
   stay-hydrated:
+    # Opción 1: Build local (desarrollo)
     build:
       context: .
       dockerfile: Dockerfile
+    # Opción 2: Usar imagen de Docker Hub (producción)
+    # image: wandish/stay-hydrated:latest
     ports:
       - "8080:80"
     container_name: stay-hydrated-app
